@@ -3,13 +3,13 @@ import ss58Registry from '@substrate/ss58-registry';
 import { useTable, useGlobalFilter, useSortBy, usePagination, Column } from 'react-table';
 
 export interface RegistryEntry {
-	decimals: number[],
-	displayName: string;
-	network: string;
-	prefix: number;
-	standardAccount: '*25519' | 'Ed25519' | 'Sr25519' | 'secp256k1' | null;
-	symbols: string[];
-	website: string | null;
+  decimals: number[],
+  displayName: string;
+  network: string;
+  prefix: number;
+  standardAccount: '*25519' | 'Ed25519' | 'Sr25519' | 'secp256k1' | null;
+  symbols: string[];
+  website: string | null;
 }
 
 const SS58RegistryComponent: React.FC = () => {
@@ -42,22 +42,22 @@ const SS58RegistryComponent: React.FC = () => {
       {
         Header: 'Symbols',
         accessor: 'symbols',
-        Cell: ({ value }: { value: string[] | undefined }) => value?.join(', ') || 'N/A',
+        Cell: ({ value }: { value: string[] }) => value?.join(', ') || 'N/A',
       },
       {
         Header: 'Decimals',
         accessor: 'decimals',
-        Cell: ({ value }: { value: number[] | undefined }) => value?.join(', ') || 'N/A',
+        Cell: ({ value }: { value: number[] }) => value?.join(', ') || 'N/A',
       },
       {
         Header: 'Standard Account',
         accessor: 'standardAccount',
-        Cell: ({ value }: { value: string | undefined }) => value || 'N/A',
+        Cell: ({ value }: { value: string | null }) => value || 'N/A',
       },
       {
         Header: 'Website',
         accessor: 'website',
-        Cell: ({ value }: { value: string | undefined }) => 
+        Cell: ({ value }: { value: string | null }) => 
           value ? (
             <a href={value} target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">
               {value}
@@ -68,6 +68,17 @@ const SS58RegistryComponent: React.FC = () => {
       },
     ],
     []
+  );
+
+  const tableInstance = useTable<RegistryEntry>(
+    {
+      columns,
+      data,
+      initialState: { pageIndex: 0, pageSize: 50 } as any, // Type assertion to avoid error
+    },
+    useGlobalFilter,
+    useSortBy,
+    usePagination
   );
 
   const {
@@ -86,16 +97,7 @@ const SS58RegistryComponent: React.FC = () => {
     previousPage,
     setPageSize,
     state: { pageIndex, pageSize },
-  } = useTable(
-    {
-      columns,
-      data,
-      initialState: { pageIndex: 0, pageSize: 50 },
-    },
-    useGlobalFilter,
-    useSortBy,
-    usePagination
-  );
+  } = tableInstance as any; // Type assertion to avoid errors
 
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value || "";
@@ -123,9 +125,9 @@ const SS58RegistryComponent: React.FC = () => {
       <div className="overflow-x-auto">
         <table {...getTableProps()} className="min-w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700">
           <thead>
-            {headerGroups.map(headerGroup => (
+            {headerGroups.map((headerGroup: any) => (
               <tr {...headerGroup.getHeaderGroupProps()}>
-                {headerGroup.headers.map(column => (
+                {headerGroup.headers.map((column: any) => (
                   <th
                     {...column.getHeaderProps(column.getSortByToggleProps())}
                     className="p-2 bg-gray-100 dark:bg-gray-700 border-b dark:border-gray-600 text-left dark:text-white"
@@ -144,11 +146,11 @@ const SS58RegistryComponent: React.FC = () => {
             ))}
           </thead>
           <tbody {...getTableBodyProps()}>
-            {page.map((row) => {
+            {page.map((row: any) => {
               prepareRow(row);
               return (
                 <tr {...row.getRowProps()} className="border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700">
-                  {row.cells.map(cell => (
+                  {row.cells.map((cell: any) => (
                     <td {...cell.getCellProps()} className="p-2 dark:text-gray-300">
                       {cell.render('Cell')}
                     </td>
