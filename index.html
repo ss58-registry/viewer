@@ -6,6 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + React + TS</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Add this script to configure Tailwind and set dark mode -->
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            // You can add custom theme extensions here
+          }
+        }
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
