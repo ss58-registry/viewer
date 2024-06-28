@@ -28,7 +28,7 @@ This project is a web-based viewer for the SS58 address format registry, commonl
 
 1. Clone the repository:
    ```
-   git clone https://github.com/ss58-registry/ss58-registry.github.io ss58-registry-viewer
+   git clone https://github.com/ss58-registry/viewer ss58-registry-viewer
    cd ss58-registry-viewer
    ```
 

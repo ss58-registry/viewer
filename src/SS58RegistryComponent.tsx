@@ -108,7 +108,7 @@ const SS58RegistryComponent: React.FC = () => {
   return (
     <div className="p-4 dark:bg-gray-900 transition-colors duration-200">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold dark:text-white">SS58 Registry</h1>
+        <h1 className="text-3xl font-bold dark:text-white">SS58 Registry Viewer</h1>
         <button
           onClick={() => setIsDarkMode(!isDarkMode)}
           className="px-4 py-2 rounded bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white transition-colors duration-200"
