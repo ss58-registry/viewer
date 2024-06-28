@@ -1,30 +1,84 @@
-# React + TypeScript + Vite
+# SS58 Registry Viewer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a web-based viewer for the SS58 address format registry, commonly used in Substrate-based blockchain networks. It provides an interactive table to explore and search through the SS58 registry data.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Display SS58 registry data in a sortable and searchable table
+- Pagination for easy navigation through large datasets
+- Dark mode toggle for comfortable viewing in different lighting conditions
+- Responsive design for both desktop and mobile viewing
 
-## Expanding the ESLint configuration
+## Technology Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- React
+- TypeScript
+- Vite (for fast development and optimized builds)
+- react-table (for advanced table functionality)
+- Tailwind CSS (for styling)
 
-- Configure the top-level `parserOptions` property like this:
+## Getting Started
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+### Prerequisites
+
+- Node.js (version 14 or later recommended)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+   ```
+   git clone https://github.com/ss58-registry/ss58-registry.github.io ss58-registry-viewer
+   cd ss58-registry-viewer
+   ```
+
+2. Install dependencies:
+   ```
+   npm install
+   ```
+   or if you're using yarn:
+   ```
+   yarn install
+   ```
+
+3. Start the development server:
+   ```
+   npm run dev
+   ```
+   or with yarn:
+   ```
+   yarn dev
+   ```
+
+4. Open your browser and visit `http://localhost:5173` to see the application running.
+
+## Building for Production
+
+To create a production build, run:
+
+```
+npm run build
+```
+or with yarn:
+```
+yarn build
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+This will generate a `dist` folder with the built assets.
+
+## Deployment
+
+This project is set up to deploy automatically to GitHub Pages using GitHub Actions. Any push to the `main` branch will trigger a build and deploy process.
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- [Substrate](https://substrate.io/) for the SS58 address format
+- [@substrate/ss58-registry](https://github.com/paritytech/ss58-registry) for providing the registry data
